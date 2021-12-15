@@ -1,6 +1,6 @@
-# Phase 1 Preparation
+# **Phase 1 Preparation**
 
-## Connect to the Authorization Gateway
+## **Connect to the Authorization Gateway**
 
 Once you have successfully connected to the Authorization Gateway and are comfortable with adding the SOAP header, you will test your request and response with the GetCertificationTerminalSettings.
  
@@ -10,7 +10,7 @@ This web method can be invoked if your implementation team determines the host s
 
 _Please note this is not to be confused with the GetTerminalSettings, which performs the same function for production terminals during the Production Phase._
 
-## SEC Standard Entry Class Codes
+## **SEC Standard Entry Class Codes**
 The Authorization Gateway uses the Standard Entry Class (SEC) codes to determine what information is required to be sent in the submission. The National Automated Clearing House Association (NACHA) requires the use of SEC Codes for each transaction settled through the Automated Clearing House (ACH).  Each code identifies what type of transaction occurred. In addition, the SEC_CODE element in the response XML Data Packet form the GetCertificationTerminalSettings web method will include the SEC code used from the terminal ID provided.  A definition of each of the SEC codes used by the Authorization Gateway can be found below.
 
 •	**PPD** - Prearranged Payment and Deposit Entry :  A prearranged payment and deposit entry is either a standing or single entry authorization where the funds are transferred to or from a consumers account. 
@@ -52,7 +52,7 @@ Because the Data packet is XML, some special characters must be escaped to be in
 |     Quotes               |     “         |     &quot;          |
 |     Apostrophe           |     ‘         |     &apos;          |
 
-# Phase 2 Development
+# **Phase 2 Development**
 
 **Interfacing with the Authorization Gateway**
 The best place to start is to determine your application architecture for interfacing with the Authorization Gateway.  You will choose which published XSD(s) your XML data packets will be validated against, and you also know the URL for the corresponding XML template(s) for your schema(s).  
