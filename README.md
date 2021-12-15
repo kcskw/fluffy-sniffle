@@ -1102,3 +1102,144 @@ The ProcessSingleCheckWithToken web method will process a valid XML data packet 
 |     MESSAGE:                  |     Contains   additional text and should be used by the host system to display and record   any additional information about the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |     TOKEN:                    |     Contains the   return Token that is used in place of the Account Type, Routing Number, and   Account Number. This token can then be used for future transactions.  NOTE: This is only available   when using a Token or when requesting a Token.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
+## **Single Certification Check Types**
+
+### **Check Limit Exceeded**
+The check limit for processing single certification checks is $25. If a check amount in excess of $25 is sent to the Authorization Gateway during development or certification phases then the Authorization Gateway will return “Check Limit Exceeded – Decline”.
+
+When processing a single certification check for Check Limit Exceeded you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000018 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas. Finally, you will need to include a check amount larger than $25 in the CHECK_AMOUNT element. If the request XML Data Packet is valid then this will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  D
+ - RESPONSE_TYPE_TEXT:  DECLINED
+ - RESULT_CODE:  136
+ - TYPE_CODE:  256
+ - CODE:  DECLINE CHECK LIMIT EXCEEDED
+ - MESSAGE:   DECLINE CHECK LIMIT EXCEEDED
+
+If a transaction is declined the Authorization Gateway will return an 8 in the RESULT_CODE element which indicates a Decline Message. In the returned response above the RESULT_CODE element has a value of 136. If the host system is setup to do a bit comparison of the value in the RESULT_CODE, you will discover that the 136 is made of an 8 indicating a Decline Message and 128 which indicates that the transaction limit has been exceeded.  The fixed decline response also contains a value of 256 in the TYPE_CODE element. This indicates that the host system was unable to determine if this was the first time the check was presented or if it is a representment.
+
+**Decline**
+When processing a single certification check for Decline you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000034 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas.   If the request XML Data Packet is valid then this routing number will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  D
+ - RESPONSE_TYPE_TEXT:  DECLINED
+ - RESULT_CODE:  520
+ - TYPE_CODE:  4100
+ - CODE:  DECLINE CHECK 5 UNPAID (ALL) AMT=$5478 GLOBAL eTELECOM 888-481-0757
+ - MESSAGE:   DECLINE CHECK 5 UNPAID (ALL) AMT=$5478 GLOBAL eTELECOM 888-481-0757
+
+If a transaction is declined the Authorization Gateway will return an 8 in the RESULT_CODE element which indicates a Decline Message. In the returned response above the RESULT_CODE element has a value of 520. If the host system is setup to do a bit comparison of the value in the RESULT_CODE, you will discover that the 520 is made of an 8 indicating a Decline Message and 512 which indicates that the unpaid check Limit has been exceeded.  The fixed decline response also contains a value of 4100 in the TYPE_CODE element. This again indicates an internal override was done because the Authorization Gateway is returning a predetermined fixed response. However, if the host system is setup to conduct a bit comparison on the value of the TYPE_CODE element it can also be determined that TYPE_CODE also contains a 4, which indicates a Business Check was sent for processing.
+
+**Void**
+When voiding a previously approved single certification check you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000018, 490000021, or 490000047 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “V”.  This milestone has been built into the development phase so that you can incorporate this functionality into your host system. If the request XML Data Packet is valid then a Void identifier for previously approved transaction with the routing numbers noted above will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  A
+ - RESPONSE_TYPE_TEXT:  APPROVED
+ - RESULT_CODE:  0
+ - TYPE_CODE:  5120
+ - CODE: VOID ACCEPTED
+ - MESSAGE:  VOID ACCEPTED
+
+You should note that the returned information for a voided transaction contains a RESULT_CODE of 0. This indicates that the void was approved, but it also illustrates the importance of examining the information contained with the TYPE_CODE. If the host systems interface with the Authorization Gateway was only set to interpret the RESULT_CODE, the full meaning of the overall response would be lost. In this case the TYPE_CODE returned in the response XML Data Packet contains 5120. A bit comparison of this value indicates that the value contains 1024 indicating a voided check, and 4096 indicating that there was an internal override due to a predetermined fixed response being returned.  
+
+**Reversal**
+When reversing a previously approved single certification check you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000018, 490000021, or 490000047 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “F”.  This milestone has been built into the development phase so that you can incorporate this functionality into your host system. If the request XML Data Packet is valid then a Reversal identifier for previously approved transaction with the routing numbers noted above will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  A
+ - RESPONSE_TYPE_TEXT:  APPROVED
+ - RESULT_CODE:  0
+ - TYPE_CODE:  5120
+ - CODE: REVERSAL ACCEPTED
+ - MESSAGE:  REVERSAL ACCEPTED
+
+ **Credit**
+When processing a single certification check for Authorization you will need to invoke the ProcessSingleCertificationCheck web method.  A credit transaction is processed with a negative sign in front of the amount.  Set the routing number to 490000018 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas.  If the request XML Data Packet is valid then this routing number will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  A
+ - RESPONSE_TYPE_TEXT:  APPROVED
+ - RESULT_CODE:  0
+ - TYPE_CODE:  4096
+ - CODE:  AUTH NUM 272-172
+ - MESSAGE:   APPROVAL
+
+**Manager Needed**
+When processing a single certification check for Manager Needed you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000021 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas.   If the request XML Data Packet is valid then this routing number will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  W
+ - RESPONSE_TYPE_TEXT:  Warning
+ - RESULT_CODE:  132
+ - TYPE_CODE:  4100
+ - CODE: MANAGER NEEDED CHECK TOO LARGE  
+ - MESSAGE: MANAGER NEEDED CHECK TOO LARGE  
+
+If a transaction is returned with a warning message, the RESULT_CODE element will contain a 4. In the above response message, a bit comparison will show that the RESULT_CODE element also contains a 128 which indicates that the transaction limit has been exceeded.  The host system should be setup to recognize warning messages and any other additional information contained within the RESULT_CODE element.  In this case the MESSAGE element indicates that the Manager is needed because the check is too large. The TYPE_CODE again shows that 4096 was returned indicating that there was an internal override due to a predetermined fixed response being returned as well as a 4 indicating a Business Check was sent for processing. 
+
+If the host system receives a warning message back and indicates “MANAGER NEEDED” and you are not doing PPD, then you have the option of sending an override request packet back to the Authorization Gateway.  The override request is created by sending the same request XML Data Packet back to the Authorization Gateway. However, you must change the value of the IDENTIFIER element to “O”. You also have the option of changing the values of the TRANSACTION_ID element and REQUEST_ID attribute so that your host system can record and track the override request as a separate transaction. In this instance you also have the option of changing the value in the CHECK_AMOUNT element.  Again, identifying a request XML Data Packet as an override will void the previous transaction and input a new transaction in its place, and your host system will receive an authorization in return.
+
+**Represented Check**
+When processing a single certification check for Re-Presented Check you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000047 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas.   If the request XML Data Packet is valid then this routing number will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  W
+ - RESPONSE_TYPE_TEXT:  Warning
+ - RESULT_CODE:  4
+ - TYPE_CODE:  4228
+ - CODE: MANAGER NEEDED REPRESENTED CHECK
+ - MESSAGE: MANAGER NEEDED REPRESENTED CHECK  
+
+If a transaction is returned with a warning message, the RESULT_CODE element will contain a 4.  In this case the MESSAGE element indicates that the Manager is needed because this is a represented check. The TYPE_CODE in this response contains a lot of information. A bit comparison will show that the value of 4228 in the TYPE_CODE element contains 128 which indicates a represented check as well as 4096 indicating that there was an internal override due to a predetermined fixed response being returned, and a 4 indicating a Business Check was sent for processing.  The host system should be able to recognize that a warning message was received from the Authorization Gateway and that it was a represented check. 
+
+If the host system receives a warning message back and indicates “MANAGER NEEDED” and you are not doing PPD, then you have the option of sending an override request packet back to the Authorization Gateway.  The override request is created by sending the same request XML Data Packet back to the Authorization Gateway. However, you must change the value of the IDENTIFIER element to “O”. You also have the option of changing the values of the TRANSACTION_ID element and REQUEST_ID attribute so that your host system can record and track the override request as a separate transaction. Again, identifying a request XML Data Packet as an override will void the previous transaction and input a new transaction in its place, and your host system will receive an authorization in return.
+
+**No ACH**
+When processing a single certification check for No ACH Check you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000050 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas.   If the request XML Data Packet is valid then this routing number will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  D, VA
+ - RESPONSE_TYPE_TEXT:  Decline, Verification Approved
+ - RESULT_CODE:  8,0
+ - TYPE_CODE:  512, 768
+ - CODE: DECLINE, NO ACH
+ - MESSAGE: DECLINE, NO ACH
+
+**For SEC Codes (WEB, TEL, PPD, or CCD)**
+If a transaction is returned with a Decline message, the RESULT_CODE element will contain an 8. In this case the MESSAGE element indicates that the transaction is Declined because of the type of SEC code assigned to the terminal. The TYPE_CODE in this response contains a lot of information. A bit comparison will show that the value of 512 in the TYPE_CODE element means that this is a Block for ACH transaction.  The host system should be able to recognize that a warning message was received from the Authorization Gateway and that it was a Decline with No ACH. 
+
+**For All Other SEC Codes.**
+If a transaction is returned with a Verification Approved message, the RESULT_CODE element will contain a 0. In this case the MESSAGE element indicates that the transaction is Verification Approved. The TYPE_CODE in this response contains a lot of information. A bit comparison will show that the value of 768 in the TYPE_CODE element contains 512 which indicates a Block for ACH and a 256 which indicates it is also for an Unknown Presentment.
+
+**MICR ERROR**
+When processing a single certification check for MICR ERROR Check you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000015 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas.   If the request XML Data Packet is valid then this routing number will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  VE
+ - RESPONSE_TYPE_TEXT: Verification Error
+ - RESULT_CODE:  2
+ - TYPE_CODE:  0
+ - CODE: MICR ERROR
+ - MESSAGE: MICR ERROR  
+
+If a transaction is returned with a Verification Error message, the RESULT_CODE element will contain a 2. In this case the MESSAGE element indicates that the transaction is a MICR ERROR. The TYPE_CODE in this response contains a lot of information. A bit comparison will show that the value of 0 in the TYPE_CODE element means that this is Nothing other than an Error.  The host system should be able to recognize that a warning message was received from the Authorization Gateway and that it was a MICR ERROR and that no other information is provided. 
+
+## **Exception Handling**
+Incorporating exception handling into your host system for the Authorization Gateway interface is important so that the host system can check to ensure that nothing unexpected occurred during processing.  There are basically two reasons the Authorization Gateway may return an exception in the response XML Data Packet. 
+
+Although the Authorization Gateway has been rigorously tested it is possible that an internal error may occur. If this happens the Authorization Gateway will return an EXCEPTION element with a message of “An internal error occurred. The Transaction was NOT processed”. If this exception is return to the host system our software team will be immediately notified with detailed information about the problem and will work to correct the issue. We work hard to ensure these types of exceptions do not occur, but your integration team should understand what internal errors mean, how they are handled, and configure the host system to take appropriate action.
+
+ The Authorization Gateway may also return exception messages if there are authentication, authorization, or data related errors. The message for these types of exceptions will vary, but the host system will receive a detailed message within the EXCEPTION element that outlines exactly what the problem was. These types of exceptions are built into the Authorization Gateway by design and the Authorization Gateway relies on the host system to resolve the issue.
+
+We expect that your integration team has included at least a minimal level of exception handling into your host system prior to beginning the Certification Phase.
+
+If an error occurs within the Authorization Gateway, the XML string response will detail the reason for the error within an Exception element. The Exception element will NOT be present if an error did not occur. However, should an error occur, the Exception element may be found as a child element of either the Response element, or the Transaction element.
+
+### EXCEPTION **Element – Example as a child of the RESPONSE element**
+```
+<? Xml version=”1.0” encoding=”utf-8” ?> 
+          <RESPONSE xmlns:xsd=”http://www.w3.org/2001/XMLSchema”     
+                             xmlns:xsi=”http://www.w3.org/2001/XMLSchema-instance”    
+            REQUEST_ID=”” >
+                 <EXCEPTION>
+               <MESSAGE>An internal error occurred. The transaction was NOT      
+                           Processed.
+                         </MESSAGE> 
+         </EXCEPTION>
+      </RESPONSE>
+```
+
