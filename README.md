@@ -1243,3 +1243,19 @@ If an error occurs within the Authorization Gateway, the XML string response wil
       </RESPONSE>
 ```
 
+### **The Exception element will contain the following elements.**
+
+| MESSAGE: | Contains text information about the exception |
+|----------|-----------------------------------------------|
+
+### **Request an Archived Response**
+Each time a valid data packet request is processed the Authorization Message that is returned is archived. To maintain a high level of performance Authorization Messages are archived asynchronously while the original Authorization Message is returned to the requestor.
+
+If needed an Authorization Message for a previously processed transaction can be requested again by invoking the GetArchivedResponse web method.  It is important to note that the transaction is not processed again, only the original Authorization Message that was archived is returned. Each Authorization Message is archived along with the unique user defined Request ID and Terminal ID that was provided in the data packet request. The GetArchivedResponse web method accepts the Request ID as an input parameter and will return the original Authorization Message for the given Request ID and Terminal ID.
+ 
+_NOTE: If Authorization Gateway Request IDs are duplicated for a given Terminal, only the last Authorization Message for the pairing will be returned._ 
+
+## *Requesting a Certification Script**
+
+Requesting a certification script is the major milestone of the Development Phase. It signifies that your integration team has completed the integration effort and alerts our software team that the host system is ready to undergo certification. It is important that your integration team contact us to request a certification script. If a certification script is not requested, but you begin the Certification Phase, our software team will not be able to properly certify your host system and your team will have to rerun the certification script prior to moving to the Production Phase. 
+You can reach our Integration Department by email at integration@eftsupport.com
