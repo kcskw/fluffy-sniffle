@@ -1263,3 +1263,11 @@ You can reach our Integration Department by email at integration@eftsupport.com
 # **Phase 3 Certification**
 
 During the certification phase your integration team will be responsible for sequentially completing the objectives in the certification script provided. Your team should now be intimately familiar with the Authorization Gateway and the host system should now be able to handle the completion of these objectives without any problems.  During the certification phase our software team will closely monitor each transaction to ensure it is valid, and that the host system is properly configured. We will alert you to the status of the transaction in our system and advise you if there are any modifications that need to be made to the host system. The successful completion of each objective outlined in the certification script signifies the completion of the major milestone for the Certification Phase and marks the opportunity to begin the Production Phase.
+
+# **Phrase 4 Migrating to Production**
+The Production Phase is the final phase of the integration effort. During this phase you will have to make some minimal changes to the host system in order to use the Authorization Gateway in a production environment. This includes the following:
+
+•	You will need to request a user name and password for production. This user name and password will be different from the user name and password provided for certification and will only be valid for production.  The host system will then need to be modified to include this user name and password in the authentication header when invoking a production web method.
+•	You will need to request the production URL for the Authorization Gateway. This URL will be different then the URL used for certification, however it will contain identical web methods. The host system will need to be modified to invoke web methods on the production URL.
+•	You will also need to change the certification web methods listed below to their sister production web methods.
+
