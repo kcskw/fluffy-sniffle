@@ -742,3 +742,363 @@ Root path:  https://demo.eftchecks.com/webservices/schemas/pop/templates)
 |      OCRIdentityVerification.xml    |     O               |     X                  |     X                |     4323                           |
 |      OCRIdentityVerification.xml    |     F               |     X                  |     X                |     4333                           |
 
+## **How to determine which XSD to Use**
+The XSD that will be used can be retrieved from the Terminal Settings, but can also be determined by using the criteria below.  
+
+The root path for all XSDs is http://demo.eftchecks.com/webservices/Schemas followed by the SEC Code and Schema Name. The Schema Name is determined by the following criteria:
+
+ - If the Terminal requires the Driver’s License Information. 
+ - If the Terminal is configured for Check Verification.
+ - If the Terminal is configured for Identity Verification.
+ - For PPD and CCD entries, If the Terminal is configured to allow Credit entries
+
+A matrix of the available XSDs for each SEC code can be found below. Each grid contains the name of the schema, based on the schemas determining criteria, and a link to the actual schema.  The grid also includes the Terminal IDs that can be used for testing and certifying against the provided schema.
+
+An example XSD file path for a PPD terminal that does not require the driver’s license information, is setup for check verification, and is setup for identity verification, and does not allow credits would be as follows: 
+https://demo.eftchecks.com/webservices/schemas/ppd/CheckVerificationIdentityVerificationDLOptional.xsd
+
+## **Standard XSD Schemas**
+A matrix of the available XSDs can be found below. Each grid contains the name of the schema, based on the schemas determining criteria, and a link to the actual schema.  The grid also includes the Terminal IDs that can be used for testing and certifying against the provided schema.
+
+### **PPD Schemas – Guaranteed**
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/ppd/)
+
+|     Template                                                     |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|------------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|    ** Debit   Only Transactions **                                   |                        |                         |                      |                                    |
+|     CheckNoVerificationDLOptional.xsd                            |                        |                         |                      |     1010                           |
+|     CheckNoVerificationDLRequired.xsd                            |     X                  |                         |                      |     1011                           |
+|     CheckVerificationIdentityVerificationDLOptional.xsd          |                        |     X                   |     X                |     1012                           |
+|     CheckVerificationIdentityVerificationDLRequired.xsd          |     X                  |     X                   |     X                |     1013                           |
+|     CheckVerificationOnlyDLOptional.xsd                          |                        |     X                   |                      |     1014                           |
+|     CheckVerificationOnlyDLRequired.xsd                          |     X                  |     X                   |                      |     1015                           |
+|     IdentityVerificationOnlyDLOptional.xsd                       |                        |                         |     X                |     1016                           |
+|     IdentityVerificationOnlyDLRequired.xsd                       |     X                  |                         |     X                |     1017                           |
+|     **Credit   & Debit Transactions**                                |                        |                         |                      |                                    |
+|     CreditCheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     1810                           |
+|     CreditCheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     1811                           |
+|     CreditCheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     1812                           |
+|     CreditCheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     1813                           |
+|     CreditCheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     1814                           |
+|     CreditCheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     1815                           |
+|     CreditIdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     1816                           |
+|     CreditIdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     1817                           |
+
+### **Schemas – Non-Guaranteed**
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/ppd/)
+
+|     Template                                                        |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|---------------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|     **Debit   Only Transactions**                                       |                        |                         |                      |                                    |
+|     Ng_CheckNoVerificationDLOptional.xsd                            |                        |                         |                      |     2010                           |
+|     Ng_CheckNoVerificationDLRequired.xsd                            |     X                  |                         |                      |     2011                           |
+|     Ng_CheckVerificationIdentityVerificationDLOptional.xsd          |                        |     X                   |     X                |     2012                           |
+|     Ng_CheckVerificationIdentityVerificationDLRequired.xsd          |     X                  |     X                   |     X                |     2013                           |
+|     Ng_CheckVerificationOnlyDLOptional.xsd                          |                        |     X                   |                      |     2014                           |
+|     Ng_CheckVerificationOnlyDLRequired.xsd                          |     X                  |     X                   |                      |     2015                           |
+|     Ng_IdentityVerificationOnlyDLOptional.xsd                       |                        |                         |     X                |     2016                           |
+|     Ng_IdentityVerificationOnlyDLRequired.xsd                       |     X                  |                         |     X                |     2017                           |
+|     **Credit   & Debit Transactions**                                   |                        |                         |                      |                                    |
+|     Ng_CreditCheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     2810                           |
+|     Ng_CreditCheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     2811                           |
+|     Ng_CreditCheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     2812                           |
+|     Ng_CreditCheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     2813                           |
+|     Ng_CreditCheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     2814                           |
+|     Ng_CreditCheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     2815                           |
+|     Ng_CreditIdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     2816                           |
+|     Ng_CreditIdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     2817                           |
+### **CCD Schemas – Guaranteed**
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/ccd/)
+
+|     Template                                                     |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|------------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|   **Debit   Only Transactions**                                    |                        |                         |                      |                                    |
+|     CheckNoVerificationDLOptional.xsd                            |                        |                         |                      |     1710                           |
+|     CheckNoVerificationDLRequired.xsd                            |     X                  |                         |                      |     1711                           |
+|     CheckVerificationIdentityVerificationDLOptional.xsd          |                        |     X                   |     X                |     1712                           |
+|     CheckVerificationIdentityVerificationDLRequired.xsd          |     X                  |     X                   |     X                |     1713                           |
+|     CheckVerificationOnlyDLOptional.xsd                          |                        |     X                   |                      |     1714                           |
+|     CheckVerificationOnlyDLRequired.xsd                          |     X                  |     X                   |                      |     1715                           |
+|     IdentityVerificationOnlyDLOptional.xsd                       |                        |                         |     X                |     1716                           |
+|     IdentityVerificationOnlyDLRequired.xsd                       |     X                  |                         |     X                |     1717                           |
+|     **Credit   & Debit Transactions**                                |                        |                         |                      |                                    |
+|     CreditCheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     1910                           |
+|     CreditCheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     1911                           |
+|     CreditCheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     1912                           |
+|     CreditCheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     1913                           |
+|     CreditCheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     1914                           |
+|     CreditCheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     1915                           |
+|     CreditIdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     1916                           |
+|     CreditIdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     1917                           |
+
+CCD Schemas – Non-Guaranteed
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/ccd/)
+
+|     Template                                                        |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|---------------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|     Debit   Only Transactions                                       |                        |                         |                      |                                    |
+|     Ng_CheckNoVerificationDLOptional.xsd                            |                        |                         |                      |     2710                           |
+|     Ng_CheckNoVerificationDLRequired.xsd                            |     X                  |                         |                      |     2711                           |
+|     Ng_CheckVerificationIdentityVerificationDLOptional.xsd          |                        |     X                   |     X                |     2712                           |
+|     Ng_CheckVerificationIdentityVerificationDLRequired.xsd          |     X                  |     X                   |     X                |     2713                           |
+|     Ng_CheckVerificationOnlyDLOptional.xsd                          |                        |     X                   |                      |     2714                           |
+|     Ng_CheckVerificationOnlyDLRequired.xsd                          |     X                  |     X                   |                      |     2715                           |
+|     Ng_IdentityVerificationOnlyDLOptional.xsd                       |                        |                         |     X                |     2716                           |
+|     Ng_IdentityVerificationOnlyDLRequired.xsd                       |     X                  |                         |     X                |     2717                           |
+|     Credit   & Debit Transactions                                   |                        |                         |                      |                                    |
+|     Ng_CreditCheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     2910                           |
+|     Ng_CreditCheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     2911                           |
+|     Ng_CreditCheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     2912                           |
+|     Ng_CreditCheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     2913                           |
+|     Ng_CreditCheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     2914                           |
+|     Ng_CreditCheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     2915                           |
+|     Ng_CreditIdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     2916                           |
+|     Ng_CreditIdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     2917                           |
+
+### **WEB Schemas** 
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/web/)
+
+|     Template                                                  |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|---------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|     Ng_CheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     2310                           |
+|     Ng_CheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     2311                           |
+|     Ng_CheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     2312                           |
+|     Ng_CheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     2313                           |
+|     Ng_CheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     2314                           |
+|     Ng_CheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     2315                           |
+|     Ng_IdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     2316                           |
+|     Ng_IdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     2317                           |
+
+### **TEL Schemas – Guaranteed**
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/tel/)
+
+|     Template                                               |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|     CheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     1210                           |
+|     CheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     1211                           |
+|     CheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     1212                           |
+|     CheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     1213                           |
+|     CheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     1214                           |
+|     CheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     1215                           |
+|     IdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     1216                           |
+|     IdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     1217                           |
+
+### **TEL Schemas – Non-Guaranteed**
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/tel/)
+
+|     Template                                                  |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|---------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|     Ng_CheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     2210                           |
+|     Ng_CheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     2211                           |
+|     Ng_CheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     2212                           |
+|     Ng_CheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     2213                           |
+|     Ng_CheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     2214                           |
+|     Ng_CheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     2215                           |
+|     Ng_IdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     2216                           |
+|     Ng_IdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     2217                           |
+
+### **POP Schemas** 
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/pop/)
+
+|     Template                                               |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|     CheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     1110                           |
+|     CheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     1111                           |
+|     CheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     1112                           |
+|     CheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     1113                           |
+|     CheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     1114                           |
+|     CheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     1115                           |
+|     IdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     1116                           |
+|     IdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     1117                           |
+
+### **Check21 Schemas** 
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/c21/)
+
+|     Template                                               |     DL     Required    |     Verify     Check    |     Verify     ID    |     Certification   Terminal ID    |
+|------------------------------------------------------------|------------------------|-------------------------|----------------------|------------------------------------|
+|     CheckNoVerificationDLOptional.xsd                      |                        |                         |                      |     1610                           |
+|     CheckNoVerificationDLRequired.xsd                      |     X                  |                         |                      |     1611                           |
+|     CheckVerificationIdentityVerificationDLOptional.xsd    |                        |     X                   |     X                |     1612                           |
+|     CheckVerificationIdentityVerificationDLRequired.xsd    |     X                  |     X                   |     X                |     1613                           |
+|     CheckVerificationOnlyDLOptional.xsd                    |                        |     X                   |                      |     1614                           |
+|     CheckVerificationOnlyDLRequired.xsd                    |     X                  |     X                   |                      |     1615                           |
+|     IdentityVerificationOnlyDLOptional.xsd                 |                        |                         |     X                |     1616                           |
+|     IdentityVerificationOnlyDLRequired.xsd                 |     X                  |                         |     X                |     1617                           |
+
+## **OCR XSD Schemas**
+A matrix of the available OCR XSDs can be found below. Each grid contains the name of the schema, based on the schemas determining criteria, and a link to the actual schema.  The grid also includes the Terminal IDs that can be used for testing and certifying against the provided schema. NOTE: Verify Check can be applied to any terminal. This will NOT impact the terminal schemas or template.
+
+### **POP Schemas** 
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/pop/)
+
+|     Template                                 |     DL     Required    |     Verify     ID    |     Certification   Terminal ID    |
+|----------------------------------------------|------------------------|----------------------|------------------------------------|
+|     OCRDLOptional.xsd                        |                        |                      |     4010/4020/4030/4210            |
+|     OCRDLRequired.xsd                        |     X                  |                      |     4011/4021/4031/4211            |
+|     OCRIdentityVerificationDLOptional.xsd    |                        |     X                |     4012/4022/4032/4212            |
+|     OCRIdentityVerificationDLRequired.xsd    |     X                  |     X                |     4013/4023/4033/4213            |
+
+### **Check21 Schemas** 
+(Root path:  http://demo.eftchecks.com/webservices/Schemas/c21/)
+
+|     Template                                 |     DL     Required    |     Verify     ID    |     Certification   Terminal ID    |
+|----------------------------------------------|------------------------|----------------------|------------------------------------|
+|     OCRDLOptional.xsd                        |                        |                      |     4110/4120/4130/4310            |
+|     OCRDLRequired.xsd                        |     X                  |                      |     4111/4121/4131/4311            |
+|     OCRIdentityVerificationDLOptional.xsd    |                        |     X                |     4112/4122/4132/4312            |
+|     OCRIdentityVerificationDLRequired.xsd    |     X                  |     X                |     4113/4123/4133/4313            |
+
+## **Data Types**
+Each element in the XML data packet that is sent to the Authorization Gateway has a data type that defines the format of the data contained within the element.  The Terminal’s XSD defines which elements are of what data type. A list and links to the available data types is located below.
+ - States and Provinces
+https://demo.eftchecks.com/Webservices/schemas/types/StatesAndProvincesSimpleType.xsd
+ - Authorization Gateway Types
+https://demo.eftchecks.com/Webservices/schemas/types/AuthGatewayTypes.xsd 
+ - Authorization Gateway Response Types
+https://demo.eftchecks.com/Webservices/schemas/types/AuthGatewayResponseTypes.xsd
+
+## **Responses**
+Each web method in the Authorization Gateway will return an XML string and detail the success or failure of the submission.  If the transaction is accepted (authorized) an authorization number will be returned at a minimum.
+
+The Authorization Gateway XML response may contain the following elements:
+ - **REQUEST_ID**:  Is an attribute that contains a unique user defined ID to identify the authorization gateway request. The Request ID contained in the Authorization Gateway Request is returned in the Authorization Gateway response.
+ - **VALIDATION_MESSAGE**:  Contains all of the elements in the validation message. 
+ - **AUTHORIZATION_MESSAGE**:  Contains all of the elements in the authorization message.
+ 
+_NOTE: The AuthGatewayCertification web method response will not contain this element._
+
+### Validation Message Response
+The AuthGatewayCertification, ProcessSingleCheck, and ProcessSingleCheckWithToken web methods will validate that the interface is sending a data packet that conforms to its schema. 
+Validation Message Example – Success Response
+```
+<?xml version=”1.0” encoding=”utf-8”?>
+<RESPONSE xmlns:xsi=”http://www.w3.org/2001/XMLSchema-instance” xmlns:xsd=”http://www.w3.org/2001/XMLSchema” REQUEST_ID=”4654”>
+                <VALIDATION_MESSAGE>
+<RESULT>Passed</RESULT>
+<SCHEMA_FILE_PATH>http://demo.eftchecks.com/webservices/Schemas/WEB/CheckNoVerificationDLOptional.xsd
+</SCHEMA_FILE_PATH>
+                </VALIDATION_MESSAGE>
+</RESPONSE>
+```
+
+### **Validation Message Example – Failure Response**
+
+This data packet failed validation because the Driver’s License Information is required by the XSD and was not provided in the data packet.
+```
+<<?xml version=”1.0” encoding=”utf-8” ?> 
+       <RESPONSE xmlns:xsd=”http://www.w3.org/2001/XMLSchema” xmlns:xsi=”http://www.w3.org/2001/XMLSchema-instance” REQUEST_ID=”4654”>>
+    <VALIDATION_MESSAGE>
+          <RESULT>Failed</RESULT> 
+                <SCHEMA_FILE_PATH>
+                         http://localhost/GETI.eMagnus.WebServices/Schemas/PPD/
+                         CheckNoVerificationDLRequired.xsd
+                </SCHEMA_FILE_PATH> 
+               <VALIDATION_ERROR LINE_NUMBER=”1” LINE_POSITION=”561” >
+               <SEVERITY>Error</SEVERITY> 
+               <MESSAGE>
+                              The ‘DL_STATE’ element has an invalid value according to its data
+                               type. An error occurred at (1, 561).
+                          </MESSAGE> 
+           </VALIDATION_ERROR>
+               <VALIDATION_ERROR LINE_NUMBER=”1” LINE_POSITION=”583”>
+               <SEVERITY>Error</SEVERITY> 
+               <MESSAGE>
+                               The ‘IDENTIFIER’ element has an invalid value according to its data      
+                                type.
+                         </MESSAGE> 
+           </VALIDATION_ERROR>
+      </VALIDATION_MESSAGE>
+   </RESPONSE>
+```
+
+## **The Validation Message may contain the following elements and attributes**:
+
+|     RESULT              |     Contains Passed   or Failed indicating if the validation was successful or not.                                                                                           |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|     SCHEMA_FILE_PATH    |     Contains the   Uniform Resource Identifier (URI) specifying the published XML Schema   Definition (XSD) that the data packet request will be validated against.           |
+|     VALIDATION_ERROR    |     Contains all of   the elements in the validation error.                                                                                                                   |
+|     LINE_NUMBER         |     Contains the line   the number where the validation error occurred.                                                                                                       |
+|     LINE_POSITION       |     Contains the line   position where the validation error occurred.                                                                                                         |
+|     SEVERITY            |     Contains warning   or error indicating the severity of the validation error.                                                                                              |
+|     MESSAGE             |     Contains the   complete validation error message and will include the element that failed   the validation and may contain the location the validation error occurred.    |
+
+## Authorization Message Response
+The ProcessSingleCheck web method will process a valid XML data packet and return an Authorization Message within the response. An example of the Authorization message is below.
+
+### Authorization Message Example 
+```
+<?xml version=”1.0” encoding=”utf-8” ?> 
+<RESPONSE xmlns:xsd=”http://www.w3.org/2001/XMLSchema”xmlns:xsi=”http://www.w3.org/2001/XMLSchema-instance” REQUEST_ID=”4654”>
+<VALIDATION_MESSAGE>
+<RESULT>Passed</RESULT> 
+<SCHEMA_FILE_PATH>http://localhost/GETI.eMagnus.WebServices/Schemas/PPD/CheckVerificationIdentityVerificationDLRequired.xsd</SCHEMA_FILE_PATH> 
+</VALIDATION_MESSAGE>
+<AUTHORIZATION_MESSAGE>
+<TRANSACTION_ID>0a4f529d-70fd-4ddb-b909-b5598dc07579</TRANSACTION_ID> 
+<RESPONSE_TYPE>A</RESPONSE_TYPE> 
+<RESPONSE_TYPE_TEXT>APPROVED</RESPONSE_TYPE_TEXT> 
+<RESULT_CODE>0</RESULT_CODE> 
+<TYPE_CODE>4096</TYPE_CODE> 
+<CODE>AUTH NUM 272-172</CODE> 
+<MESSAGE>APPROVAL</MESSAGE> 
+</AUTHORIZATION_MESSAGE>
+</RESPONSE>
+```
+### **The Authorization Message may contain the following elements**:
+
+|     TRANSACTION_ID        |     Contains   the unique user defined ID to identify the packet. The Transaction ID   provided for a given transaction in the data packet is returned in the   authorization message in the response.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|     RESPONSE_TYPE         |     Contains   an identifier that will give your host system a general overview of the   processed transaction, and the RESPONSE_TYPE_TEXT element will contain the   full text description of the identifier contained in the RESPONSE_TYPE   element. The RESULT_CODE should be the primary driver for determining how the   host system should act in response to various responses from the   Authorization Gateway, but the values in the RESPONSE_TYPE can be used to   determine additional information for processing by the host system. This   includes determining if a transaction was processed as Verification   Only.  A complete list of response   types is located in the Authorization   Response Types XSD.    |
+|     RESPONSE_TYPE_TEXT    |     Contains   the full text description of the response type identifier.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|     RESULT_CODE           |     Contains   a numeric bit that indicates one or many result messages. Examples of result   messages are Approved, Decline, or Unpaid Check Limit Exceeded.  A complete list of result codes is located   in the Authorization   Response Types XSD.  The host system should conduct a bit   comparison of the RESULT_CODE to determine exactly how the transaction was   processed and from there can determine exactly what action to take if any.                                                                                                                                                                                                                                                                             |
+|     TYPE_CODE             |     Contains   a numeric bit that indicates one or many type messages.  The host system should conduct a bit   comparison of the TYPE_CODE element to determine additional detailed   information about the transaction which can be provided to the user.  Examples of type messages are Personal   Check, Business Check, or Voided Check. A complete list of type codes is   located in the Authorization   Response Types XSD.                                                                                                                                                                                                                                                                                                 |
+|     CODE                  |     Contains   the text message with the Authorization Number if the transaction was   approved or additional information if the transaction was not approved.  The CODE element should be used by the host   system to display and record any authorization numbers or additional   information.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|     MESSAGE               |     Contains   additional text and should be used by the host system to display and record   any additional information about the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+
+### **Process Single Certification Check – Authorization**
+When processing a single certification check for Authorization you will need to invoke the ProcessSingleCertificationCheck web method and set the routing number to 490000018 in the ROUTING_NUMBER element of the request XML Data Packet. You will also have to set the value of the IDENTIFER element to “R” if you are using a PPD or CCD schema or “A” for all other schemas.  If the request XML Data Packet is valid then this routing number will trigger the Authorization Gateway to return a response with the following information to the host system:
+
+ - RESPONSE_TYPE:  A
+ - RESPONSE_TYPE_TEXT:  APPROVED
+ - RESULT_CODE:  0
+ - TYPE_CODE:  4096
+ - CODE:  AUTH NUM 272-172
+ - MESSAGE:   APPROVAL
+
+Again, the host system should first check to make sure the RESULT child element of the VALIDATION_MESSAGE is set to “Passed”.  If the request XML Data Packet passed validation it was successfully processed, and the above elements will be present as child elements of the AUTHORIZATION_MESSAGE element.  The host system should store all of the returned data and at a minimum conduct a bit comparison of the value in the RESULT_CODE element. If the value in the RESULT_CODE is 0 then the transaction has been approved. The response Data Packet also contains a value of 4096 for the TYPE_CODE element which indicates an Internal Override which in this instance means that Authorization Gateway returned a predetermined fixed response.  
+
+## **Authorization Message Response with Token**
+The ProcessSingleCheckWithToken web method will process a valid XML data packet and return an Authorization Message within the response. An example of the Authorization message is below.
+
+### **Authorization Message Example with Token**
+```
+<?xml version=”1.0” encoding=”utf-8” ?> 
+<RESPONSE xmlns:xsd=”http://www.w3.org/2001/XMLSchema”xmlns:xsi=”http://www.w3.org/2001/XMLSchema-instance” REQUEST_ID=”4654”>
+<VALIDATION_MESSAGE>
+<RESULT>Passed</RESULT> 
+<SCHEMA_FILE_PATH>http://localhost/GETI.eMagnus.WebServices/Schemas/PPD/CheckVerificationIdentityVerificationDLRequired.xsd</SCHEMA_FILE_PATH> 
+</VALIDATION_MESSAGE>
+<AUTHORIZATION_MESSAGE>
+<TRANSACTION_ID>0a4f529d-70fd-4ddb-b909-b5598dc07579</TRANSACTION_ID> 
+<RESPONSE_TYPE>A</RESPONSE_TYPE> 
+<RESPONSE_TYPE_TEXT>APPROVED</RESPONSE_TYPE_TEXT> 
+<RESULT_CODE>0</RESULT_CODE> 
+<TYPE_CODE>4096</TYPE_CODE> 
+<CODE>AUTH NUM 272-172</CODE> 
+<MESSAGE>APPROVAL</MESSAGE>
+<TOKEN>C7E057491C4A4D67B617EE512D1300AE</TOKEN> 
+</AUTHORIZATION_MESSAGE>
+</RESPONSE>
+```
+### **The Authorization Message may contain the following elements**:
+
+|     TRANSACTION_ID:           |      Contains   the unique user defined ID to identify the packet. The Transaction ID   provided for a given transaction in the data packet is returned in the   authorization message in the response.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|     RESPONSE_TYPE:            |     contains an   identifier that will give your host system a general overview of the   processed transaction, and the RESPONSE_TYPE_TEXT element will contain the   full text description of the identifier contained in the RESPONSE_TYPE   element. The RESULT_CODE should be the primary driver for determining how the   host system should act in response to various responses from the   Authorization Gateway, but the values in the RESPONSE_TYPE can be used to   determine additional information for processing by the host system. This   includes determining if a transaction was processed as Verification   Only.  A complete list of response   types is located in the Authorization   Response Types XSD.    |
+|     RESPONSE_TYPE_TEXT:       |     Contains the full   text description of the response type identifier.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|     RESULT_CODE:              |     Contains a numeric   bit that indicates one or many result messages. Examples of result messages   are Approved, Decline, or Unpaid Check Limit Exceeded.  A complete list of result codes is located   in the Authorization   Response Types XSD.  The host system should conduct a bit   comparison of the RESULT_CODE to determine exactly how the transaction was   processed and from there can determine exactly what action to take if any.                                                                                                                                                                                                                                                                             |
+|     TYPE_CODE:                |     Contains a numeric   bit that indicates one or many type messages.    The host system should conduct a bit comparison of the TYPE_CODE   element to determine additional detailed information about the transaction   which can be provided to the user.    Examples of type messages are Personal Check, Business Check, or   Voided Check. A complete list of type codes is located in the Authorization   Response Types XSD.                                                                                                                                                                                                                                                                                               |
+|     CODE:                     |     Contains the text   message with the Authorization Number if the transaction was approved or   additional information if the transaction was not approved.  The CODE element should be used by the host   system to display and record any authorization numbers or additional   information.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|     MESSAGE:                  |     Contains   additional text and should be used by the host system to display and record   any additional information about the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|     TOKEN:                    |     Contains the   return Token that is used in place of the Account Type, Routing Number, and   Account Number. This token can then be used for future transactions.  NOTE: This is only available   when using a Token or when requesting a Token.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+
