@@ -31,9 +31,9 @@ The XML data packet can be built from scratch or one of the available XML templa
 
 The root path for all XML Templates is https://demo.eftchecks.com/webserivces/schemas/  followed by the SEC Code, “/Templates/”, and the XML Template name.  The XML Template is determined by the following criteria:
 
-  - 	If the Terminal requires the Driver’s License Information.
-  - 	If the Terminal is configured for Check Verification.
-  - 	If the Terminal is configured for Identity Verification.
+ - 	If the Terminal requires the Driver’s License Information.
+ - 	If the Terminal is configured for Check Verification.
+ - 	If the Terminal is configured for Identity Verification.
 
 A matrix of the available XML Templates for each SEC code can be found in the XML templates section. Each grid contains the name of the XML Template, based on the XML Templates determining criteria, and a link to the actual XML Template. 
 
