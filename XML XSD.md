@@ -92,3 +92,72 @@ Link to [XSD Schemas](https://github.com/PayaDev/PayaServices/tree/main/Authoriz
 | CreditCheck - Verification OnlyDLRequired                  | 1815 / 2815                              | XSD            | XSD                 | XML         | XML                   |
 | CreditIdentity - Verification OnlyDLOptional               | 1816 / 2816                              | XSD            | XSD                 | XML         | XML                   |
 | CreditIdentity - Verification OnlyDLRequired               | 1817 / 2817                              | XSD            | XSD                 | XML         | XML                   |
+
+
+| **PPD**                                                    | Certification Terminal ID                |                |                     |             |                       |
+|------------------------------------------------------------|------------------------------------------|----------------|---------------------|-------------|-----------------------|
+|                                                            | Guarenteed 1000's  Non-Guarenteed 2000's | XSD Guarenteed | XSD Non- Guarenteed | XML Example | XML Exampl with Token |
+| **Debit Only Transactions**                                |                                          |                |                     |             |                       |
+| CheckNoVerification - DL Optional                          | 1010 / 2010                              | XSD            | XSD                 | XML         | XML                   |
+| CheckNoVerification - DL Required                          | 1011 / 2011                              | XSD            | XSD                 | XML         | XML                   |
+| CheckVerification - IdentityVerification DL Optional       | 1012 / 2012                              | XSD            | XSD                 | XML         | XML                   |
+| CheckVerification - IdentityVerification DL Required       | 1013 / 2013                              | XSD            | XSD                 | XML         | XML                   |
+| CheckVerification - Only DL Optional                       | 1014 / 2014                              | XSD            | XSD                 | XML         | XML                   |
+| CheckVerification - Only DL Required                       | 1015 / 2015                              | XSD            | XSD                 | XML         | XML                   |
+| IdentityVerification - Only DL Optional                    | 1016 / 2016                              | XSD            | XSD                 | XML         | XML                   |
+| IdentityVerification - Only DL Required                    | 1017 / 2017                              | XSD            | XSD                 | XML         | XML                   |
+|                                                            |                                          |                |                     |             |                       |
+| **Credit & Debit Transactions**                            |                                          |                |                     |             |                       |
+| CreditCheck - NoVerification DLOptional                    | 1810 / 2810                              | XSD            | XSD                 | XML         | XML                   |
+| CreditCheck - NoVerificationDLRequired                     | 1811 / 2811                              | XSD            | XSD                 | XML         | XML                   |
+| CreditCheck - Verification IdentityVerification DLOptional | 1812 / 2812                              | XSD            | XSD                 | XML         | XML                   |
+| CreditCheck - Verification IdentityVerification DLRequired | 1813 / 2813                              | XSD            | XSD                 | XML         | XML                   |
+| CreditCheck - Verification Only DLOptional                 | 1814 / 2814                              | XSD            | XSD                 | XML         | XML                   |
+| CreditCheck - Verification OnlyDLRequired                  | 1815 / 2815                              | XSD            | XSD                 | XML         | XML                   |
+| CreditIdentity - Verification OnlyDLOptional               | 1816 / 2816                              | XSD            | XSD                 | XML         | XML                   |
+| CreditIdentity - Verification OnlyDLRequired               | 1817 / 2817                              | XSD            | XSD                 | XML         | XML                   |
+
+
+**PPD**
+**Guarenteed**
+
+                                                         **Debit Only**                                         **Debit and Credit** 
+|                    |             Terminals            | 1010 | 1011 | 1012 | 1013 | 1014 | 1015 | 1016 | 1017 | 1810 | 1811 | 1812 | 1813 | 1814 | 1815 | 1816 | 1817 |
+|--------------------|:--------------------------------:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|------|------|------|------|------|------|------|------|
+| R =   Required     |           XML Template           |  XML |  XML |  XML |  XML |  XML |  XML |  XML |  XML | XML  | XML  | XML  | XML  | XML  | XML  | XML  | XML  |
+| E = Can   be empty |       XML Schema Definition      |  XSD |  XSD |  XSD |  XSD |  XSD |  XSD |  XSD |  XSD | XSD  | XSD  | XSD  | XSD  | XSD  | XSD  | XSD  | XSD  |
+|   TRANSACTION_ID   |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|     TERMINAL_ID    |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|     IDENTIFIER     |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|    CONTROL_CHAR    |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|  VERIFICATION_ONLY |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|        TOKEN       |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|      MICR_DATA     |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|   ROUTING_NUMBER   |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|   ACCOUNT_NUMBER   |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|    CHECK_NUMBER    |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|    ACCOUNT_TYPE    |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|    COMPANY_NAME    |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|     FIRST_NAME     |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|      LAST_NAME     |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|      ADDRESS1      |      Field must be   present     |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |
+|      ADDRESS2      |      Field must be   present     |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |   E  |
+|        CITY        |      Field must be   present     |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |
+|        STATE       |      Field must be   present     |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |
+|         ZIP        |      Field must be   present     |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |
+|    PHONE_NUMBER    |      Field must be   present     |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |   R  |
+|      DL_STATE      |      Field must be   present     |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |
+|      DL_NUMBER     |      Field must be   present     |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |   E  |   R  |
+|  COURTESY_CARD_ID  |      Field must be   present     |   E  |   E  |   E  |   R  |   E  |   E  |   E  |   R  |   E  |   E  |   E  |   R  |   E  |   E  |   E  |   R  |
+|        SSN4        | Must contain one of these fields |      |      |   C  |   C  |      |      |   C  |   C  |      |      |   C  |   C  |      |      |   C  |   C  |
+|      DOB_YEAR      |                                  |      |      |   C  |   C  |      |      |   C  |   C  |      |      |   C  |   C  |      |      |   C  |   C  |
+|    CHECK_AMOUNT    |             Required             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|    IMAGE_FRONT     |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|     IMAGE_BACK     |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|    MRDCIMGCOUNT    |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|       CUSTOM1      |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|       CUSTOM2      |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|       CUSTOM3      |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|       CUSTOM4      |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|    ECODE_OPTIONS   |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+|     REQUEST_ID     |             Optional             |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
